@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MediLog · Dra. Lia</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <div class="aviso" role="note">
+    MediLog es una <strong>orientación</strong> y no reemplaza la valoración de un profesional de la salud.
+    En una emergencia llama al <strong>123</strong>.
+  </div>
+
+  <main>
+    <!-- Avatar provisional: el SVG (fase 3) y el 3D (fase 4) lo reemplazan -->
+    <section class="avatar" id="avatar" data-estado="saludo">
+      <div class="avatar-cara" aria-hidden="true">🩺</div>
+      <div>
+        <h1>Dra. Lia</h1>
+        <p id="subtitulo" class="subtitulo" aria-live="polite">Hola, soy la Dra. Lia. Cuéntame cómo te sientes.</p>
+      </div>
+    </section>
+
+    <!-- 1. Datos del paciente -->
+    <section id="sec-paciente" class="tarjeta">
+      <h2>Tus datos</h2>
+      <form id="form-paciente">
+        <label>Edad <input type="number" name="edad" min="0" max="120" required></label>
+        <label>Sexo
+          <select name="sexo" required>
+            <option value="f">Femenino</option>
+            <option value="m">Masculino</option>
+          </select>
+        </label>
+        <label class="check"><input type="checkbox" name="embarazo"> Embarazo</label>
+        <label class="check"><input type="checkbox" name="zona_endemica"> Vivo o viajé a zona cálida (dengue, malaria)</label>
+        <button type="submit">Continuar</button>
+      </form>
+    </section>
+
+    <!-- 2. Síntomas iniciales -->
+    <section id="sec-sintomas" class="tarjeta oculto">
+      <h2>¿Qué sientes?</h2>
+      <textarea id="texto-sintomas" rows="2" placeholder="Ej.: tengo fiebre y me duele la cabeza"></textarea>
+      <p class="ayuda">O selecciona tus síntomas:</p>
+      <div id="chips" class="chips"></div>
+      <button id="btn-sintomas">Empezar consulta</button>
+      <p id="msg-sintomas" class="ayuda"></p>
+    </section>
+
+    <!-- 3. Pregunta dinámica -->
+    <section id="sec-pregunta" class="tarjeta oculto">
+      <p class="contador" id="contador"></p>
+      <h2 id="texto-pregunta"></h2>
+      <div class="botones">
+        <button data-valor="si">Sí</button>
+        <button data-valor="no">No</button>
+        <button data-valor="nose" class="secundario">No sé</button>
+      </div>
+      <button id="btn-porque" class="enlace">¿Por qué me preguntas eso?</button>
+      <p id="porque" class="ayuda"></p>
+    </section>
+
+    <!-- Emergencia -->
+    <section id="sec-emergencia" class="tarjeta emergencia oculto" role="alert">
+      <h2>⚠ Señal de alarma</h2>
+      <p id="msg-emergencia"></p>
+      <p class="grande">Llama al <a href="tel:123">123</a> o ve a urgencias ahora.</p>
+    </section>
+
+    <!-- Resultado -->
+    <section id="sec-resultado" class="tarjeta oculto">
+      <h2>Posibles causas</h2>
+      <p id="triage" class="triage"></p>
+      <ol id="lista-resultado" class="resultado"></ol>
+      <button id="btn-explicacion" class="enlace">¿Cómo llegaste a este resultado?</button>
+      <div id="explicacion"></div>
+    </section>
+
+    <!-- Hipótesis en vivo y respuestas (corrección RF10) -->
+    <section id="sec-estado" class="tarjeta oculto">
+      <h3>Hipótesis actuales</h3>
+      <ul id="hipotesis" class="barras"></ul>
+      <h3>Tus respuestas</h3>
+      <ul id="respuestas" class="respuestas"></ul>
+    </section>
+
+    <button id="btn-reiniciar" class="secundario">Nueva consulta</button>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

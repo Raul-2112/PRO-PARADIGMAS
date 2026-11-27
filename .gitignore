@@ -1,0 +1,6 @@
+backend/persist/*.db
+*.qlf
+node_modules/
+.vscode/
+Thumbs.db
+desktop.ini
